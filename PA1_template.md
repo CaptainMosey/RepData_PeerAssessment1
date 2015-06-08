@@ -1,24 +1,17 @@
----
-title: "Reproducible Research: Peer Assessment 1"
-output: 
-  html_document:
-    keep_md: true
----
+# Reproducible Research: Peer Assessment 1
 
 ## Loading and preprocessing the data
 
-```{r,echo = TRUE}
+
+```r
 #load data and ggplot library
 data<-read.csv("activity.csv")
 library(ggplot2)
-
-
 ```
 
 ## What is mean total number of steps taken per day?
-```{r,echo = TRUE}
 
-
+```r
 #build new table, tracking average number of steps per day
 stepsPerDay=data.frame(date=character(0),steps=numeric(0),stringsAsFactors=F)
 
@@ -33,15 +26,25 @@ stepsPerDay$steps<-as.numeric(stepsPerDay$steps)
 
 #plot histogram and report mean and median
 hist(stepsPerDay$steps,main="Steps Per Day",xlab="Steps per day")
+```
+
+![](PA1_template_files/figure-html/unnamed-chunk-2-1.png) 
+
+```r
 meanSteps<-mean(stepsPerDay$steps)
 medianSteps<-median(stepsPerDay$steps)
 
 print(paste("The mean number of steps per day is ",toString(meanSteps)," and the median is ",toString(medianSteps),".",sep=""))
 ```
 
+```
+## [1] "The mean number of steps per day is 153.348024724536 and the median is 170.409836065574."
+```
+
 
 ## What is the average daily activity pattern?
-```{r,echo = TRUE}
+
+```r
 #build table for avg steps per 5 min interval
 #also, track interval with highest steps
 stepsPerInterval=data.frame(interval=character(0),steps=numeric(0),stringsAsFactors=F)
@@ -65,15 +68,24 @@ stepsPerInterval$interval<-as.numeric(stepsPerInterval$interval)
 
 #plot and report top interval
 plot(stepsPerInterval$interval,stepsPerInterval$steps,type="l",main="Steps Per Time Interval",xlab="5 minute Interval",ylab="Steps")
+```
 
+![](PA1_template_files/figure-html/unnamed-chunk-3-1.png) 
+
+```r
 print(paste("The time interval with the most steps is ",toString(highestInterval),".",sep=""))
+```
+
+```
+## [1] "The time interval with the most steps is 835."
 ```
 
 
 
 
 ## Imputing missing values
-```{r,echo = TRUE}
+
+```r
 #build new data table to fix  missing values
 data2<-data
 subValue=0
@@ -102,12 +114,19 @@ for(i in levels(data2$date)){
 stepsPerDay2$steps<-as.numeric(stepsPerDay$steps)
 
 hist(stepsPerDay2$steps,main="Steps Per Day",xlab="Steps per day")
+```
 
+![](PA1_template_files/figure-html/unnamed-chunk-4-1.png) 
+
+```r
 meanSteps2<-mean(stepsPerDay2$steps)
 medianSteps2<-median(stepsPerDay2$steps)
 
 print(paste("The mean number of steps per day is ",toString(meanSteps2)," and the median is ",toString(medianSteps2),".",sep=""))
+```
 
+```
+## [1] "The mean number of steps per day is 153.348024724536 and the median is 170.409836065574."
 ```
 These values are not different from part 1, because I used the mean for each time interval. Because entire days of data are missing, when I add in  the average for time intervals, the average steps/day stays the same.
 
@@ -115,7 +134,8 @@ These values are not different from part 1, because I used the mean for each tim
 ## Are there differences in activity patterns between weekdays and weekends?
 
 
-```{r,echo = TRUE}
+
+```r
 #add type column, 2 possibility for type- weekday and weekend
 for(i in 1:nrow(data2)){
   if (weekdays(as.POSIXct(data2$date[i]))=="Sunday" | weekdays(as.POSIXct(data2$date[i]))=="Saturday" ){
@@ -146,7 +166,6 @@ print(g
       +facet_grid(type~.)
       +labs(x="Interval",
             y="Average Steps"))
-
-
-
 ```
+
+![](PA1_template_files/figure-html/unnamed-chunk-5-1.png) 
