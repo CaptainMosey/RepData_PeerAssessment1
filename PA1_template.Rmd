@@ -12,7 +12,7 @@ output:
 data<-read.csv("activity.csv")
 library(ggplot2)
 
-
+ 
 ```
 
 ## What is mean total number of steps taken per day?
@@ -21,7 +21,7 @@ library(ggplot2)
 
 #build new table, tracking average number of steps per day
 stepsPerDay=data.frame(date=character(0),steps=numeric(0),stringsAsFactors=F)
-
+ 
 #repeat for each day
 for(i in levels(data$date)){
   thisDate<-sum(data$steps[data$date==i],na.rm=T)/length(levels(data$date))
@@ -32,7 +32,7 @@ for(i in levels(data$date)){
 stepsPerDay$steps<-as.numeric(stepsPerDay$steps)
 
 #plot histogram and report mean and median
-hist(stepsPerDay$steps,main="Steps Per Day",xlab="Steps per day")
+hist(stepsPerDay$steps,main="Steps Per Day",xlab="steps per day")
 meanSteps<-mean(stepsPerDay$steps)
 medianSteps<-median(stepsPerDay$steps)
 
@@ -64,7 +64,7 @@ stepsPerInterval$steps<-as.numeric(stepsPerInterval$steps)
 stepsPerInterval$interval<-as.numeric(stepsPerInterval$interval)
 
 #plot and report top interval
-plot(stepsPerInterval$interval,stepsPerInterval$steps,type="l",main="Steps Per Time Interval",xlab="5 minute Interval",ylab="Steps")
+plot(stepsPerInterval$interval,stepsPerInterval$steps,type="l",main="Steps Per Time Interval",xlab="5 minute interval",ylab="Steps")
 
 print(paste("The time interval with the most steps is ",toString(highestInterval),".",sep=""))
 ```
@@ -102,7 +102,7 @@ for(i in levels(data2$date)){
 
 stepsPerDay2$steps<-as.numeric(stepsPerDay$steps)
 
-hist(stepsPerDay2$steps,main="Steps Per Day",xlab="Steps per day")
+hist(stepsPerDay2$steps,main="Steps Per Day",xlab="steps per day")
 
 meanSteps2<-mean(stepsPerDay2$steps)
 medianSteps2<-median(stepsPerDay2$steps)
@@ -146,7 +146,7 @@ print(g
       + geom_line()
       +facet_grid(type~.)
       +labs(x="Interval",
-            y="Average Steps"))
+            y="Average steps"))
 
 
 

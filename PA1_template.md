@@ -14,7 +14,7 @@ library(ggplot2)
 ```r
 #build new table, tracking average number of steps per day
 stepsPerDay=data.frame(date=character(0),steps=numeric(0),stringsAsFactors=F)
-
+ 
 #repeat for each day
 for(i in levels(data$date)){
   thisDate<-sum(data$steps[data$date==i],na.rm=T)/length(levels(data$date))
@@ -25,7 +25,7 @@ for(i in levels(data$date)){
 stepsPerDay$steps<-as.numeric(stepsPerDay$steps)
 
 #plot histogram and report mean and median
-hist(stepsPerDay$steps,main="Steps Per Day",xlab="Steps per day")
+hist(stepsPerDay$steps,main="Steps Per Day",xlab="steps per day")
 ```
 
 ![](PA1_template_files/figure-html/unnamed-chunk-2-1.png) 
@@ -67,7 +67,7 @@ stepsPerInterval$steps<-as.numeric(stepsPerInterval$steps)
 stepsPerInterval$interval<-as.numeric(stepsPerInterval$interval)
 
 #plot and report top interval
-plot(stepsPerInterval$interval,stepsPerInterval$steps,type="l",main="Steps Per Time Interval",xlab="5 minute Interval",ylab="Steps")
+plot(stepsPerInterval$interval,stepsPerInterval$steps,type="l",main="Steps Per Time Interval",xlab="5 minute interval",ylab="Steps")
 ```
 
 ![](PA1_template_files/figure-html/unnamed-chunk-3-1.png) 
@@ -114,7 +114,7 @@ for(i in levels(data2$date)){
 
 stepsPerDay2$steps<-as.numeric(stepsPerDay$steps)
 
-hist(stepsPerDay2$steps,main="Steps Per Day",xlab="Steps per day")
+hist(stepsPerDay2$steps,main="Steps Per Day",xlab="steps per day")
 ```
 
 ![](PA1_template_files/figure-html/unnamed-chunk-4-1.png) 
@@ -166,7 +166,7 @@ print(g
       + geom_line()
       +facet_grid(type~.)
       +labs(x="Interval",
-            y="Average Steps"))
+            y="Average steps"))
 ```
 
 ![](PA1_template_files/figure-html/unnamed-chunk-5-1.png) 
