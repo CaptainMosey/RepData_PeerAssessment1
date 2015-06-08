@@ -87,6 +87,7 @@ print(paste("The time interval with the most steps is ",toString(highestInterval
 
 ```r
 #build new data table to fix  missing values
+#for each time interval missing data, we will add the average value for the interval in the rest of the data
 data2<-data
 subValue=0
 

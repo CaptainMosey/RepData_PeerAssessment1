@@ -125,6 +125,7 @@ plot(stepsPerInterval$interval,stepsPerInterval$steps,type=&quot;l&quot;,main=&q
 <div id="imputing-missing-values" class="section level2">
 <h2>Imputing missing values</h2>
 <pre class="r"><code>#build new data table to fix  missing values
+#for each time interval missing data, we will add the average value for the interval in the rest of the data
 data2&lt;-data
 subValue=0
 
